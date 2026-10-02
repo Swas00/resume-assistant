@@ -122,7 +122,8 @@ jobs:
       - name: Build AI Service Docker Image
         uses: docker/build-push-action@v5
         with:
-          context: ./ai-service
+          context: .
+          file: ./ai-service/Dockerfile
           push: false
           tags: antigravity-ai-service:ci-test
 
