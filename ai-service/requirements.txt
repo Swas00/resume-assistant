@@ -1,0 +1,25 @@
+# Core FastAPI & ASGI server
+fastapi>=0.115.0
+uvicorn[standard]>=0.34.0
+pydantic>=2.10.0
+pydantic-settings>=2.7.0
+
+# LLM Providers
+openai>=1.63.0
+anthropic>=0.45.0
+
+# LangChain Orchestration
+langchain>=0.3.18
+langchain-core>=0.3.35
+langchain-openai>=0.3.6
+langchain-anthropic>=0.3.7
+
+# Networking & Utilities
+httpx>=0.28.1
+python-dotenv>=1.0.1
+python-multipart>=0.0.20
+
+# Resume parsing (NLP, dates, HTTP)
+spacy==3.7.2
+python-dateutil==2.8.2
+requests==2.31.0

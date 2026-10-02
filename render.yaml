@@ -1,0 +1,50 @@
+services:
+  # -------------------------------------------------------------
+  # Express Backend Web Service
+  # -------------------------------------------------------------
+  - type: web
+    name: antigravity-backend
+    runtime: node
+    plan: starter
+    rootDir: backend
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: MONGO_URI
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRES_IN
+        value: 7d
+      - key: CORS_ORIGIN
+        value: "*"
+
+  # -------------------------------------------------------------
+  # FastAPI AI Web Service
+  # -------------------------------------------------------------
+  - type: web
+    name: antigravity-ai-service
+    runtime: python
+    plan: starter
+    rootDir: ai-service
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port 8000
+    healthCheckPath: /health
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: OPENAI_DEFAULT_MODEL
+        value: gpt-4o
+      - key: ANTHROPIC_DEFAULT_MODEL
+        value: claude-3-5-sonnet-20241022
+      - key: CORS_ORIGINS
+        value: "*"
