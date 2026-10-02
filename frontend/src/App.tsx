@@ -352,7 +352,7 @@ export default function App() {
         <div className="pointer-events-auto">
           <PillNav
             logo={<Sparkles size={18} className="text-white" />}
-            logoAlt="Resume Assistant"
+            logoAlt="ResumeAI"
             items={navItems}
             activeHref={`#${activeTab}`}
             onLogoClick={() => scrollTo('overview')}
@@ -382,7 +382,7 @@ export default function App() {
             <div className="badge-wrapper">
               <span className="system-badge">
                 <span className="badge-dot" />
-                AI Career Intelligence v2.0 • Live ATS Engine
+                ResumeAI v2.0 · Career Intelligence Platform
               </span>
             </div>
 
@@ -511,7 +511,7 @@ export default function App() {
             <Sparkles size={14} /> Interactive Studio
           </div>
           <h2 className="text-3xl md:text-5xl font-extrabold text-neutral-900 tracking-tight mb-3">
-            AI Resume Intelligence Workspace
+            ResumeAI Intelligence Workspace
           </h2>
           <p className="text-sm md:text-base text-neutral-500 max-w-2xl mx-auto">
             Test and interact with each system live. Upload real resumes, benchmark against target jobs, tailor bullets,
@@ -1598,7 +1598,7 @@ export default function App() {
             <div className="w-6 h-6 rounded-lg bg-black text-white flex items-center justify-center font-bold text-xs">
               RA
             </div>
-            <span className="font-semibold text-neutral-800">Resume Assistant Platform</span>
+            <span className="font-semibold text-neutral-800">ResumeAI · Career Intelligence Platform</span>
             <span>• React 19 + TypeScript + Tailwind CSS</span>
           </div>
 
