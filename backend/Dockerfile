@@ -1,19 +1,19 @@
-FROM node:18-alpine
+FROM node:22-alpine
 WORKDIR /app
 
-# Copy only backend files
-COPY backend/package*.json ./
+# Copy package files
+COPY package*.json ./
 RUN npm install
 
-# Copy backend source code
-COPY backend/src ./src
-COPY backend/tsconfig.json ./
+# Copy backend source code and config
+COPY tsconfig.json ./
+COPY src/ ./src/
 
 # Build TypeScript to JavaScript
 RUN npm run build
 
 # Expose port
-EXPOSE 3000
+EXPOSE 5000
 
 # Start
 CMD ["npm", "start"]

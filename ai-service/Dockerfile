@@ -8,16 +8,16 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONPATH=/opt/app
 
 # Copy requirements
-COPY ai-service/requirements.txt .
+COPY requirements.txt .
 
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy entire ai-service structure
-COPY ai-service/ .
+# Copy entire ai-service source code
+COPY . .
 
 # Expose port
 EXPOSE 5001
 
-# Run from app folder
+# Run from app module
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "5001"]
