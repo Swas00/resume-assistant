@@ -61,3 +61,5 @@ temp/
 
 # Backend uploads (multer temp files)
 uploads/
+.vercel
+.env*
