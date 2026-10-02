@@ -9,6 +9,9 @@ RUN npm install
 COPY backend/src ./src
 COPY backend/tsconfig.json ./
 
+# Build TypeScript to JavaScript
+RUN npm run build
+
 # Expose port
 EXPOSE 3000
 
