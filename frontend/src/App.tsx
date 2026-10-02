@@ -2,6 +2,8 @@ import { useState, useRef } from 'react';
 import LiquidChromeCanvas from './components/LiquidChromeCanvas';
 import InteractiveListPreview, { type InteractiveListItem } from '@/components/ui/interactive-list-preview';
 import { FlowButton } from '@/components/ui/flow-button';
+import { PillNav, type PillNavItem } from '@/components/ui/pill-nav';
+import { PillNavDemo } from '@/components/ui/pill-nav-demo';
 import {
   Sparkles,
   UploadCloud,
@@ -133,60 +135,53 @@ export default function App() {
     }
   };
 
+  const getActiveHref = () => {
+    switch (currentPage) {
+      case 'hero': return '#overview';
+      case 'upload': return '#scanner';
+      case 'analysis': return '#scanner';
+      case 'matching': return '#matching';
+      case 'tailoring': return '#tailor';
+      case 'interview': return '#interview';
+      default: return '#overview';
+    }
+  };
+
+  const navItems: PillNavItem[] = [
+    { label: 'Overview', href: '#overview', onClick: () => setCurrentPage('hero') },
+    { label: 'ATS Scanner', href: '#scanner', onClick: () => setCurrentPage('upload') },
+    { label: 'Job Match', href: '#matching', onClick: () => setCurrentPage('matching') },
+    { label: 'Claude Tailor', href: '#tailor', onClick: () => setCurrentPage('tailoring') },
+    { label: 'Interview Bot', href: '#interview', onClick: () => setCurrentPage('interview') },
+    { label: 'Systems', href: '#systems', onClick: scrollToGallery },
+  ];
+
   return (
     <div className="mercury-engine">
-      {/* Sleek Glassmorphic Navigation Bar */}
-      <header className="top-navbar">
-        <div className="brand-group" onClick={() => setCurrentPage('hero')}>
-          <div className="brand-logo-badge">🎯</div>
-          <span className="brand-name">Resume Assistant</span>
+      {/* Dynamic Floating PillNav */}
+      <header className="fixed top-2.5 left-0 right-0 z-50 px-4 pointer-events-none flex items-center justify-between max-w-6xl mx-auto">
+        <div className="pointer-events-auto">
+          <PillNav
+            logo={<Sparkles size={18} className="text-white" />}
+            logoAlt="Resume Assistant"
+            items={navItems}
+            activeHref={getActiveHref()}
+            onLogoClick={() => setCurrentPage('hero')}
+            baseColor="#111114"
+            pillColor="rgba(255, 255, 255, 0.95)"
+            hoveredPillTextColor="#ffffff"
+            pillTextColor="#111114"
+          />
         </div>
 
-        <nav className="nav-links">
+        <div className="hidden lg:flex items-center pointer-events-auto">
           <button
-            className={`nav-item ${currentPage === 'hero' ? 'active' : ''}`}
-            onClick={() => setCurrentPage('hero')}
-          >
-            Overview
-          </button>
-          <button
-            className="nav-item"
-            onClick={scrollToGallery}
-          >
-            Interactive Preview
-          </button>
-          <button
-            className={`nav-item ${currentPage === 'upload' ? 'active' : ''}`}
+            className="nav-cta-btn shadow-lg backdrop-blur-md"
             onClick={() => setCurrentPage('upload')}
           >
-            ATS Scanner
+            Upload Resume
           </button>
-          <button
-            className={`nav-item ${currentPage === 'matching' ? 'active' : ''}`}
-            onClick={() => setCurrentPage('matching')}
-          >
-            Job Matching
-          </button>
-          <button
-            className={`nav-item ${currentPage === 'tailoring' ? 'active' : ''}`}
-            onClick={() => setCurrentPage('tailoring')}
-          >
-            AI Bullet Tailor
-          </button>
-          <button
-            className={`nav-item ${currentPage === 'interview' ? 'active' : ''}`}
-            onClick={() => setCurrentPage('interview')}
-          >
-            Mock Interview
-          </button>
-        </nav>
-
-        <button
-          className="nav-cta-btn"
-          onClick={() => setCurrentPage('upload')}
-        >
-          Upload Resume
-        </button>
+        </div>
       </header>
 
       {/* Hero Page with Liquid Chrome Background */}
@@ -320,6 +315,27 @@ export default function App() {
                   text="Analyze Resume"
                   onClick={() => setCurrentPage('upload')}
                 />
+              </div>
+            </div>
+          </section>
+
+          {/* PillNav Kinetic UI Showcase */}
+          <section className="relative z-10 w-full max-w-6xl mx-auto px-6 mb-28">
+            <div className="rounded-3xl border border-black/10 bg-white/70 backdrop-blur-xl p-8 md:p-12 shadow-xl flex flex-col md:flex-row items-center justify-between gap-8">
+              <div className="max-w-md">
+                <div className="section-tag flex items-center gap-2 mb-2">
+                  <Sparkles size={14} /> Navigation System
+                </div>
+                <h3 className="text-2xl md:text-3xl font-bold text-neutral-900 tracking-tight mb-2">
+                  PillNav Interactive Menu
+                </h3>
+                <p className="text-sm text-neutral-600 leading-relaxed">
+                  Rising circle GSAP physics, rotating interactive logo, and responsive mobile drawer transitions.
+                </p>
+              </div>
+
+              <div className="w-full md:w-auto">
+                <PillNavDemo />
               </div>
             </div>
           </section>
