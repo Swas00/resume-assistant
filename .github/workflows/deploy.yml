@@ -10,8 +10,9 @@ jobs:
   deploy-backend:
     name: Deploy Backend to Railway
     runs-on: ubuntu-latest
+    if: "${{ secrets.RAILWAY_TOKEN != '' }}"
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Deploy Backend to Railway
         uses: railway-app/action@v1
@@ -23,8 +24,9 @@ jobs:
   deploy-frontend:
     name: Deploy Frontend to Vercel
     runs-on: ubuntu-latest
+    if: "${{ secrets.VERCEL_TOKEN != '' }}"
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Deploy to Vercel
         uses: vercel/action@master
@@ -38,8 +40,9 @@ jobs:
   deploy-ai-service:
     name: Deploy AI Service to Railway
     runs-on: ubuntu-latest
+    if: "${{ secrets.RAILWAY_TOKEN != '' }}"
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Deploy AI Service to Railway
         uses: railway-app/action@v1
@@ -56,7 +59,7 @@ jobs:
     steps:
       - name: Deployment Summary
         run: |
-          echo "✅ Deployment Complete!"
+          echo "✅ Deployment status checked!"
           echo "Frontend: https://resume-assistant.vercel.app"
           echo "Backend: Check Railway Dashboard"
           echo "AI Service: Check Railway Dashboard"

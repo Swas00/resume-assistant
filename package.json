@@ -1,0 +1,9 @@
+{
+  "name": "resume-assistant-workspace",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "cd frontend && npm install --include=dev && npm run build",
+    "install:frontend": "cd frontend && npm install"
+  }
+}
