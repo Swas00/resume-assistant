@@ -7,6 +7,8 @@ export type { JwtPayload };
 
 // Extend Express Request object to include authenticated user
 declare global {
+  // Augmenting Express's global Request type requires a namespace
+  // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace Express {
     interface Request {
       user?: JwtPayload;

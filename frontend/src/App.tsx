@@ -3,7 +3,7 @@ import { Navbar } from './components/Navbar';
 import { HomePage } from './pages/HomePage';
 import { DashboardPage } from './pages/DashboardPage';
 import { Card } from './components/Card';
-import { CheckCircle2, Code, Terminal, Server, Brain, Cloud } from 'lucide-react';
+import { CheckCircle2, Code, Server, Brain, Cloud } from 'lucide-react';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('overview');
