@@ -12,9 +12,8 @@ COPY ai-service/requirements.txt .
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy source code
-COPY ai-service/main.py .
-COPY ai-service/models ./models
+# Copy source code (everything from app/ folder)
+COPY ai-service/app ./
 
 # Expose port
 EXPOSE 5001
