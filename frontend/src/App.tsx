@@ -2,6 +2,8 @@ import { useState, useRef } from 'react';
 import LiquidChromeCanvas from './components/LiquidChromeCanvas';
 import InteractiveListPreview, { type InteractiveListItem } from '@/components/ui/interactive-list-preview';
 import { FlowButton } from '@/components/ui/flow-button';
+import { GlowButton } from '@/components/ui/glow-button';
+import { InteractiveGlowDemo } from '@/components/ui/interactive-glow-demo';
 import { PillNav, type PillNavItem } from '@/components/ui/pill-nav';
 import { PillNavDemo } from '@/components/ui/pill-nav-demo';
 import {
@@ -35,6 +37,12 @@ type StudioTab = 'scanner' | 'matching' | 'tailor' | 'interview' | 'export';
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
 const SHOWCASE_ITEMS: InteractiveListItem[] = [
+  {
+    client: 'JITTER GLOW ENGINE',
+    platform: 'CSS SHADER & MOTION',
+    services: 'Iridescent Radial Aura, Dynamic Cursor Tracking, Click Shockwave Physics',
+    img: 'https://d1sk5dy9gxckst.cloudfront.net/thumbnails/1JGaa9fAtPwSQH9euktBOLvD.png',
+  },
   {
     client: 'ATS PARSER CORE',
     platform: 'PYTHON + SPACY',
@@ -389,6 +397,10 @@ export default function App() {
 
             {/* Hero CTAs */}
             <div className="cta-row flex flex-wrap items-center justify-center gap-4">
+              <GlowButton
+                text="Get moving"
+                onClick={() => handleSelectTab('scanner')}
+              />
               <FlowButton
                 text="Launch AI Studio"
                 onClick={() => handleSelectTab('scanner')}
@@ -1513,6 +1525,26 @@ export default function App() {
 
         <div className="overflow-hidden rounded-3xl border border-black/10 shadow-2xl bg-neutral-950">
           <InteractiveListPreview items={SHOWCASE_ITEMS} bgColor="#0a0a0c" className="py-4" />
+        </div>
+      </section>
+
+      {/* Jitter Micro-Interaction · Glow Button Showcase */}
+      <section className="relative z-10 w-full max-w-6xl mx-auto px-4 md:px-6 mb-28">
+        <div className="rounded-3xl border border-black/10 bg-white/70 backdrop-blur-xl p-8 md:p-12 shadow-xl space-y-8">
+          <div className="max-w-2xl">
+            <div className="section-tag flex items-center gap-2 mb-2 text-left">
+              <Sparkles size={14} className="text-purple-600" /> Jitter Micro-Interaction
+            </div>
+            <h3 className="text-2xl md:text-3xl font-bold text-neutral-900 tracking-tight mb-2">
+              Interactive Glow Button
+            </h3>
+            <p className="text-sm text-neutral-600 leading-relaxed">
+              Based on Jitter's motion design template (Interactive Button: Glow). Features multi-tier diffuse radial glows,
+              dynamic cursor position tracking, and spring click shockwaves. Try clicking or hit "Simulate Cursor" for the automated demo!
+            </p>
+          </div>
+
+          <InteractiveGlowDemo />
         </div>
       </section>
 
