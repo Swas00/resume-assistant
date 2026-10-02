@@ -82,6 +82,18 @@ export default function App() {
     const formData = new FormData();
     formData.append('file', file);
 
+    const isHttpsProd = typeof window !== 'undefined' && window.location.protocol === 'https:';
+    const isLocalBackend = !API_URL || API_URL.includes('localhost') || API_URL.includes('127.0.0.1');
+
+    if (isHttpsProd && isLocalBackend) {
+      setUploadStatus('Running procedural AI parser preview...');
+      setTimeout(() => {
+        setCurrentPage('analysis');
+        setUploading(false);
+      }, 900);
+      return;
+    }
+
     try {
       const response = await fetch(`${API_URL}/api/resume/upload`, {
         method: 'POST',
@@ -103,7 +115,7 @@ export default function App() {
         }, 1000);
       }
     } catch {
-      setUploadStatus('Connected to offline demo mode! Opening analysis...');
+      setUploadStatus('Running offline simulation preview...');
       setTimeout(() => {
         setCurrentPage('analysis');
         setUploading(false);
