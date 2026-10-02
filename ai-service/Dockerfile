@@ -15,7 +15,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy source code
 COPY ai-service/main.py .
 COPY ai-service/models ./models
-COPY ai-service/services ./services
 
 # Expose port
 EXPOSE 5001
