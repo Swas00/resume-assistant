@@ -1,31 +1,16 @@
-# Stage 1: Build stage
-FROM node:22-alpine AS builder
+FROM node:18-alpine
+WORKDIR /app
 
-WORKDIR /usr/src/app
+# Copy only backend files
+COPY backend/package*.json ./
+RUN npm install
 
-COPY package.json package-lock.json* ./
-RUN npm install --frozen-lockfile || npm install
+# Copy backend source code
+COPY backend/src ./src
+COPY backend/tsconfig.json ./
 
-COPY tsconfig.json ./
-COPY src/ ./src/
+# Expose port
+EXPOSE 3000
 
-RUN npm run build
-
-# Stage 2: Production runner
-FROM node:22-alpine AS runner
-
-WORKDIR /usr/src/app
-
-ENV NODE_ENV=production
-
-COPY package.json package-lock.json* ./
-RUN npm install --only=production --frozen-lockfile || npm install --only=production
-
-COPY --from=builder /usr/src/app/dist ./dist
-
-# Create non-root user for security
-USER node
-
-EXPOSE 5000
-
-CMD ["node", "dist/server.js"]
+# Start
+CMD ["npm", "start"]
