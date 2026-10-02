@@ -17,7 +17,7 @@ COPY ai-service/main.py .
 COPY ai-service/models ./models
 COPY ai-service/services ./services
 
-# Expose port (FastAPI runs on 5001)
+# Expose port
 EXPOSE 5001
 
 # Run with Uvicorn
